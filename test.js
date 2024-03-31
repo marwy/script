@@ -24,3 +24,17 @@ style.textContent =
 
 // Добавьте созданный стиль в документ
 document.head.appendChild(style);
+const menuDivIn = document.querySelector('.top_menu_div .top_menu_div_in');
+
+// Загрузите изображение логотипа.
+const logoSrc = 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Twitter_Verified_Badge.svg/2048px-Twitter_Verified_Badge.svg.png';
+
+// Создайте новый элемент img для логотипа.
+const logoImg = document.createElement('img');
+logoImg.src = logoSrc;
+logoImg.style.height = '20px'; // Вы можете изменить это значение, чтобы подогнать размер логотипа.
+logoImg.style.display = 'inline-block'; // Задайте свойство display для изображения.
+logoImg.style.marginLeft = '10px'; // Добавьте немного пространства между текстом и лого.
+
+// Добавьте логотип в menuDivIn.
+menuDivIn.appendChild(logoImg);
