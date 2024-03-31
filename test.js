@@ -4,3 +4,6 @@ menuDiv.style.borderRadius = '8px';
 menuDiv.style.padding = '10px';
 menuDiv.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
 menuDiv.style.color = '#fff';
+menuDiv.style.background = 'linear-gradient(to right, red, orange)';
+menuDiv.style.WebkitBackgroundClip = 'text';
+menuDiv.style.WebkitTextFillColor = 'transparent';
