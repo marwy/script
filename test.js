@@ -1,37 +1,26 @@
-// Импортируйте необходимые библиотеки
-import * as THREE from 'https://threejs.org/build/three.module.js';
-import { OrbitControls } from 'https://threejs.org/examples/jsm/controls/OrbitControls.js';
-import { CannonPhysics } from './CannonPhysics.js'; // CannonPhysics - это обертка над cannon.js. Вам необходимо будет создать этот файл.
+const menuDiv = document.querySelector('.top_menu_div');
 
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
-const controls = new OrbitControls(camera, renderer.domElement);
+// Создайте стиль, который будет добавлен в документ
+const style = document.createElement('style');
+style.textContent =
+  `
+  @keyframes blink {
+    0% {color: lightgreen; background-color: #1a1a1a;}
+    50% {color: #808080; background-color: #1a1a1a;}
+    100% {color: lightgreen; background-color: #1a1a1a;}
+  }
+  .top_menu_div {
+    animation: blink 1s linear infinite;
+    background-image: none;
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5), 0 0 20px rgba(255,255,255,0.5), 0 0 30px rgba(255,255,255,0.5), 0 0 40px #ff00de;
+    font-size: 30px;
+  }
+  `;
 
-// Инициализируйте физику
-const physics = new CannonPhysics();
-
-// Создайте mesh
-const geometry = new THREE.BoxGeometry();
-const material = new THREE.MeshNormalMaterial();
-const cube = new THREE.Mesh(geometry, material);
-scene.add(cube);
-
-// Создайте тело и добавьте его в world
-const cubeBody = physics.createBox(geometry.parameters.width, geometry.parameters.height, geometry.parameters.depth);
-cubeBody.position.y = 5; // Установите начальную позицию немного выше верхушки
-physics.world.addBody(cubeBody);
-
-camera.position.z = 5;
-
-// Обновите позицию и вращение mesh в соответствии с физическим телом
-const animate = function () {
-    requestAnimationFrame(animate);
-    cube.position.copy(cubeBody.position);
-    cube.quaternion.copy(cubeBody.quaternion);
-    renderer.render(scene, camera);
-};
-
-animate();
+// Добавьте созданный стиль в документ
+document.head.appendChild(style);
