@@ -9,8 +9,24 @@ style.textContent =
     50% {color: #808080; background-color: #1a1a1a;}
     100% {color: lightgreen; background-color: #1a1a1a;}
   }
+
+  @keyframes rotate {
+    from {
+      transform: rotateY(0deg);
+    }
+    to {
+      transform: rotateY(1turn);
+    }
+  }
+
   .top_menu_div {
-    animation: blink 1s linear infinite;
+
+    perspective: 500px;
+    transform-style: preserve-3d;
+
+    animation: blink 1s linear infinite,
+               rotate 5s infinite linear;
+
     background-image: none;
     background-color: #1a1a1a;
     border-radius: 8px;
